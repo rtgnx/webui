@@ -5,6 +5,11 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/labstack/echo"
+
+	"github.com/netauth/netauth/pkg/netauth"
+	// At least one token cache must be registered for netauth to
+	// work correctly.
+	_ "github.com/netauth/netauth/pkg/netauth/memory"
 )
 
 // Server serves the user interface over http using Echo.
@@ -12,14 +17,22 @@ type Server struct {
 	hclog.Logger
 
 	*echo.Echo
+
+	nacl *netauth.Client
 }
 
 // New initializes and returns a new http.Server.
 func New() (*Server, error) {
 	s := Server{
-		hclog.L().Named("http"),
-		echo.New(),
+		Logger: hclog.L().Named("http"),
+		Echo:   echo.New(),
 	}
+
+	client, err := netauth.New()
+	if err != nil {
+		return nil, err
+	}
+	s.nacl = client
 
 	r, err := newRenderer("tpl", s.Logger)
 	if err != nil {
@@ -29,6 +42,8 @@ func New() (*Server, error) {
 
 	s.GET("/meta/ok", s.metaOK)
 	s.GET("/meta/about", s.metaAbout)
+
+	s.GET("/system/status", s.systemStatus)
 
 	return &s, nil
 }
