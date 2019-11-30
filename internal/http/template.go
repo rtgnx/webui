@@ -16,6 +16,8 @@ import (
 type renderer struct {
 	hclog.Logger
 
+	tmplDir string
+
 	tmpls map[string]*template.Template
 }
 
@@ -24,15 +26,17 @@ func newRenderer(baseDir string, logger hclog.Logger) (*renderer, error) {
 
 	r.Logger = logger.Named("renderer")
 
-	if err := r.loadTmpls(baseDir); err != nil {
+	r.tmplDir = baseDir
+
+	if err := r.loadTmpls(); err != nil {
 		return nil, err
 	}
 
 	return r, nil
 }
 
-func (r *renderer) loadTmpls(loadFrom string) error {
-	base, err := template.ParseGlob(filepath.Join(loadFrom, "base", "*.tpl"))
+func (r *renderer) loadTmpls() error {
+	base, err := template.ParseGlob(filepath.Join(r.tmplDir, "base", "*.tpl"))
 	if err != nil {
 		return err
 	}
@@ -41,7 +45,7 @@ func (r *renderer) loadTmpls(loadFrom string) error {
 
 	// We can safely throw away this error because the pattern is
 	// hard coded.
-	pages, _ := filepath.Glob(filepath.Join(loadFrom, "pages", "*", "*.tpl"))
+	pages, _ := filepath.Glob(filepath.Join(r.tmplDir, "pages", "*", "*.tpl"))
 
 	for _, path := range pages {
 		page := filepath.Base(filepath.Dir(path))
@@ -61,5 +65,6 @@ func (r *renderer) loadTmpls(loadFrom string) error {
 }
 
 func (r *renderer) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+	r.loadTmpls()
 	return r.tmpls[name].ExecuteTemplate(w, "base", data)
 }

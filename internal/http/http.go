@@ -18,14 +18,16 @@ type Server struct {
 
 	*echo.Echo
 
-	nacl *netauth.Client
+	nacl      *netauth.Client
+	staticDir string
 }
 
 // New initializes and returns a new http.Server.
 func New() (*Server, error) {
 	s := Server{
-		Logger: hclog.L().Named("http"),
-		Echo:   echo.New(),
+		Logger:    hclog.L().Named("http"),
+		Echo:      echo.New(),
+		staticDir: "assets/",
 	}
 
 	client, err := netauth.New()
@@ -39,6 +41,8 @@ func New() (*Server, error) {
 		return nil, err
 	}
 	s.Renderer = r
+
+	s.Static("/static", s.staticDir)
 
 	s.GET("/meta/ok", s.metaOK)
 	s.GET("/meta/about", s.metaAbout)

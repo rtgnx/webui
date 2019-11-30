@@ -1,0 +1,73 @@
+br {
+    margin-bottom: 1em;
+}
+
+div {
+    border: solid black 2px;
+    padding: 1px;
+    margin: 1px;
+}
+
+li {
+    margin-left: 4px;
+    padding: 2px;
+}
+
+h1 {
+    font-size: large;
+}
+
+h2 {
+    font-size: medium;
+}
+
+table, tr, td, th {
+    padding: 8px;
+    margin: 8px;
+    border: solid black 1px;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+.logo {
+    font-family: monospace;
+    font-size: 35;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav {
+    padding: 5px;
+}
+
+.nav-section {
+    color: white;
+    background: purple;
+    border: solid purple 1px;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.nav-page {
+    background: darkorange;
+    border: solid darkorange 1px;
+    padding: 4px;
+    border-radius: 5px;
+}
+
+.main-content {
+    padding: 5px;
+}
+
+.status-good {
+    background: lightgreen;
+}
+
+.status-bad {
+    background: lightcoral;
+}

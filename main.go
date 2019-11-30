@@ -42,5 +42,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	s.Serve(":8080")
+	if err := s.Serve(":8080"); err != nil {
+		appLogger.Error("Error initializing webserver", "error", err)
+		os.Exit(1)
+	}
 }
