@@ -47,6 +47,8 @@ func New() (*Server, error) {
 	s.GET("/meta/ok", s.metaOK)
 	s.GET("/meta/about", s.metaAbout)
 
+	s.GET("/entity/info/:id", s.entityInfo)
+
 	s.GET("/system/status", s.systemStatus)
 
 	return &s, nil

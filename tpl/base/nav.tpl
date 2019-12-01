@@ -1,6 +1,5 @@
 {{ define "nav" }}
 <nav>
-  <h2>Navigation</h2>
   <ul>
     <li class="nav-section">System</li>
     <li>

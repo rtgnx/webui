@@ -1,5 +1,5 @@
 {{ define "footer" }}
-<div>
+<div class="rounded-box">
   This is the footer.
 </div>
 {{ end }}

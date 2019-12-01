@@ -38,6 +38,7 @@ func newRenderer(baseDir string, logger hclog.Logger) (*renderer, error) {
 func (r *renderer) loadTmpls() error {
 	base, err := template.ParseGlob(filepath.Join(r.tmplDir, "base", "*.tpl"))
 	if err != nil {
+		r.Logger.Error("Error loading base template", "error", err)
 		return err
 	}
 
@@ -56,6 +57,7 @@ func (r *renderer) loadTmpls() error {
 		}
 		pTmpl, err = pTmpl.ParseGlob(path)
 		if err != nil {
+			r.Logger.Error("Error parsing page template", "page", page, "error", err)
 			return err
 		}
 		r.tmpls[page] = pTmpl
