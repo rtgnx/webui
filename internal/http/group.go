@@ -24,3 +24,16 @@ func (s *Server) groupInfo(c echo.Context) error {
 
 	return c.Render(http.StatusOK, "group-info", d)
 }
+
+func (s *Server) groupMembers(c echo.Context) error {
+	members, err := s.nacl.GroupMembers(c.Request().Context(), c.Param("id"))
+	if err != nil {
+		return c.Render(http.StatusInternalServerError, "internal-error", err)
+	}
+
+	d := echo.Map{}
+	d["members"] = members
+	d["name"] = c.Param("id")
+
+	return c.Render(http.StatusOK, "group-members", d)
+}
