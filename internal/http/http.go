@@ -49,6 +49,8 @@ func New() (*Server, error) {
 
 	s.GET("/entity/info/:id", s.entityInfo)
 
+	s.GET("/group/info/:id", s.groupInfo)
+
 	s.GET("/system/status", s.systemStatus)
 
 	return &s, nil
