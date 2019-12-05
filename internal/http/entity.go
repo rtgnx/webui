@@ -22,10 +22,16 @@ func (s *Server) entityInfo(c echo.Context) error {
 		return c.Render(http.StatusInternalServerError, "internal-error", err)
 	}
 
-	d := make(map[string]interface{})
+	groups, err := s.nacl.EntityGroups(c.Request().Context(), c.Param("id"))
+	if err != nil {
+		return c.Render(http.StatusInternalServerError, "internal-error", err)
+	}
+
+	d := echo.Map{}
 	d["entity"] = entity
 	d["keys"] = keys
 	d["kv"] = kv
+	d["groups"] = groups
 
 	return c.Render(http.StatusOK, "entity-info", d)
 }

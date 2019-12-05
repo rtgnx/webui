@@ -37,6 +37,16 @@
   {{ end }}
 </div>
 {{ end }}
+{{ if .groups }}
+<div class="rounded-box info-section">
+  <h2>Member of</h2>
+  <ul>
+    {{ range $index, $element := .groups }}
+    <li><a href="/group/info/{{$element.Name}}">{{$element.Name}}</a></li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}
 {{ if .keys }}
 <div class="rounded-box info-section">
   <h2>Keys</h2>
