@@ -35,6 +35,17 @@ nav a {
     text-decoration: none;
 }
 
+fieldset {
+    display: inline-block;
+    border: 2px black groove;
+    padding: 5px;
+    margin: 5px;
+}
+
+code {
+    font-family: monospace;
+}
+
 .row {
     display: flex;
     flex-direction: row;

@@ -35,3 +35,20 @@ func (s *Server) entityInfo(c echo.Context) error {
 
 	return c.Render(http.StatusOK, "entity-info", d)
 }
+
+func (s *Server) entitySearch(c echo.Context) error {
+
+	d := echo.Map{}
+	query := c.QueryParam("query")
+
+	if query != "" {
+		res, err := s.nacl.EntitySearch(c.Request().Context(), query)
+		if err != nil {
+			return c.Render(http.StatusInternalServerError, "internal-error", err)
+		}
+		d["result"] = res
+	}
+	d["query"] = query
+
+	return c.Render(http.StatusOK, "entity-search", d)
+}
