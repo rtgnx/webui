@@ -48,10 +48,11 @@ func New() (*Server, error) {
 	s.GET("/meta/about", s.metaAbout)
 
 	s.GET("/entity/info/:id", s.entityInfo)
-	s.GET("/entity/search/", s.entitySearch)
+	s.GET("/entity/search", s.entitySearch)
 
 	s.GET("/group/info/:id", s.groupInfo)
 	s.GET("/group/members/:id", s.groupMembers)
+	s.GET("/group/search", s.groupSearch)
 
 	s.GET("/system/status", s.systemStatus)
 
