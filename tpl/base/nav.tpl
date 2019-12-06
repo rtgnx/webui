@@ -1,6 +1,18 @@
 {{ define "nav" }}
 <nav>
   <ul>
+    <li class="nav-section">Entity</li>
+    <li>
+      <ul>
+        <a href="/entity/search"><li class="nav-page">Search</li></a>
+      </ul>
+    </li>
+    <li class="nav-section">Group</li>
+    <li>
+      <ul>
+        <a href="/group/search"><li class="nav-page">Search</li></a>
+      </ul>
+    </li>
     <li class="nav-section">System</li>
     <li>
       <ul>
