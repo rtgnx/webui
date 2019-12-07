@@ -88,13 +88,14 @@ code {
 
 .rounded-box {
     border: solid black 2px;
-    border-radius: 10px;
+    border-radius: 4px;
     padding: 10px;
     margin: 5px;
 }
 
 .info-section {
     background: white;
+    margin-bottom: 10px;
 }
 
 .status-good {

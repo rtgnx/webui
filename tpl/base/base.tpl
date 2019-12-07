@@ -7,7 +7,7 @@
         <div class="rounded-box nav">
           {{ template "nav" . }}
         </div>
-        <div class="main-content rounded-box">
+        <div class="main-content">
           {{ template "content" . }}
         </div>
       </div>

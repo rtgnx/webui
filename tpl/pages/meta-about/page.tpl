@@ -1,5 +1,7 @@
 {{ define "content" }}
-This is the about page.
+<div class="rounded-box info-section">
+  This is the about page.
 
-It has this content: {{.}}
+  It has this content: {{.}}
+</div>
 {{ end }}
