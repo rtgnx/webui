@@ -52,6 +52,12 @@ code {
     width: 100%;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .main-content {
     flex-grow: 1;
 }
@@ -104,6 +110,23 @@ code {
 
 .status-bad {
     background: lightcoral;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    float: right;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.5em;
+    background: darkorange;
+    text-decoration: none;
+    color: purple;
+    border-radius: 4px;
 }
 
 #container {

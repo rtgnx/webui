@@ -2,18 +2,29 @@
 <html>
   {{ template "head" . }}
   <body>
+    <div id="top-bar">
+      <div class="right">
+        {{ if .token }}
+        <a class="button" href="/auth/logout">Log Out ({{.token.EntityID}})</a>
+        {{ end }}
+      </div>
+    </div>
     <div id="container">
       <div class="row">
-        <div class="rounded-box nav">
-          {{ template "nav" . }}
+        <div>
+          {{ block "nav" . }}
+          {{ end }}
         </div>
         <div class="main-content">
-        {{ with .data }}
-          {{ template "content" . }}
-        {{ end }}
+          {{ block "content" .data }}
+          <div class="rounded-box">
+            This is where some page content would be if it loaded.
+          </div>
+          {{ end }}
         </div>
       </div>
-      {{ template "footer" . }}
+      {{ block "footer" . }}
+      {{ end }}
     </div>
   </body>
 </html>

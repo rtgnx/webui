@@ -2,6 +2,7 @@ package http
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/labstack/echo"
@@ -20,6 +21,8 @@ type Server struct {
 
 	nacl      *netauth.Client
 	staticDir string
+
+	sessionTimeout time.Duration
 }
 
 // New initializes and returns a new http.Server.
@@ -28,6 +31,8 @@ func New() (*Server, error) {
 		Logger:    hclog.L().Named("http"),
 		Echo:      echo.New(),
 		staticDir: "assets/",
+
+		sessionTimeout: time.Minute * 10,
 	}
 
 	client, err := netauth.New()
@@ -42,10 +47,16 @@ func New() (*Server, error) {
 	}
 	s.Renderer = r
 
+	s.Use(s.parseToken)
+
 	s.Static("/static", s.staticDir)
 
 	s.GET("/meta/ok", s.metaOK)
 	s.GET("/meta/about", s.metaAbout)
+
+	s.GET("/auth/login", s.loginForm)
+	s.POST("/auth/login", s.loginGetToken)
+	s.GET("/auth/logout", s.authLogout)
 
 	s.GET("/entity/info/:id", s.entityInfo)
 	s.GET("/entity/search", s.entitySearch)

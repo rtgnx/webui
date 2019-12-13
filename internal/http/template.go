@@ -69,8 +69,10 @@ func (r *renderer) loadTmpls() error {
 
 func (r *renderer) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	r.loadTmpls()
+
 	d := echo.Map{}
 	d["data"] = data
 	d["title"] = strings.Title(strings.ReplaceAll(name, "-", " "))
+	d["token"] = c.Get("claims")
 	return r.tmpls[name].ExecuteTemplate(w, "base", d)
 }
