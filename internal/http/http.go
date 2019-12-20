@@ -60,6 +60,8 @@ func New() (*Server, error) {
 
 	s.GET("/entity/info/:id", s.entityInfo)
 	s.GET("/entity/search", s.entitySearch)
+	s.GET("/entity/create", s.entityCreateForm)
+	s.POST("/entity/create", s.entityCreateHandler)
 
 	s.GET("/group/info/:id", s.groupInfo)
 	s.GET("/group/members/:id", s.groupMembers)

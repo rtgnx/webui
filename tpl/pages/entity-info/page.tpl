@@ -13,9 +13,9 @@
     </tr>
   </table>
 </div>
+{{ with .Meta }}
 <div class="rounded-box info-section">
   <h2>Additional Information</h2>
-  {{ with .Meta }}
   <table>
     <tr>
       <td>Primary Group</td>
@@ -34,8 +34,8 @@
       <td>{{.Home}}</td>
     </tr>
   </table>
-  {{ end }}
 </div>
+{{ end }}
 {{ end }}
 {{ if .groups }}
 <div class="rounded-box info-section">

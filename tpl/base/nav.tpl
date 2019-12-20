@@ -6,6 +6,7 @@
       <li>
         <ul>
           <a href="/entity/search"><li class="nav-page">Search</li></a>
+          <a href="/entity/create"><li class="nav-page">Create</li></a>
         </ul>
       </li>
       <li class="nav-section">Group</li>

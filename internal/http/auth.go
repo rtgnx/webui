@@ -28,7 +28,8 @@ func (s *Server) loginGetToken(c echo.Context) error {
 	cookie.Expires = time.Now().Add(s.sessionTimeout)
 	c.SetCookie(cookie)
 
-	next := c.Param("next")
+	next := c.QueryParam("next")
+	s.Trace("Next location from login", "location", next)
 	if next == "" {
 		next = "/entity/info/" + c.FormValue("id")
 	}

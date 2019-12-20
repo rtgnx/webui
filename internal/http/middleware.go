@@ -19,6 +19,8 @@ func (s *Server) parseToken(next echo.HandlerFunc) echo.HandlerFunc {
 		}
 
 		c.Set("claims", claims)
+		c.Set("token", cookie.Value)
+		s.Logger.Debug("Set cookie and claims for request")
 		return next(c)
 	}
 }

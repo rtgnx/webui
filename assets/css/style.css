@@ -35,15 +35,46 @@ nav a {
     text-decoration: none;
 }
 
+nav li {
+    list-style-type: none;
+    margin: none;
+}
+
 fieldset {
     display: inline-block;
     border: 2px black groove;
-    padding: 5px;
-    margin: 5px;
+    padding: 1em;
+    margin: 1em;
+}
+
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+ul ul, ol ul {
+    list-style-type: circle;
+    list-style-position: inside;
+    margin-left: 15px;
+}
+
+ol ol, ul ol {
+    list-style-type: lower-latin;
+    list-style-position: inside;
+    margin-left: 15px;
 }
 
 code {
     font-family: monospace;
+}
+
+p {
+    margin-bottom: 1em;
 }
 
 .row {
@@ -75,10 +106,12 @@ code {
 }
 
 .nav-page {
+    color:  white;
     background: darkorange;
     border: solid darkorange 1px;
     padding: 4px;
     border-radius: 5px;
+    margin-bottom: 4px;
 }
 
 .ssh-key {
