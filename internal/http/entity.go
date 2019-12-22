@@ -18,7 +18,7 @@ func (s *Server) entityInfo(c echo.Context) error {
 		return c.Render(http.StatusInternalServerError, "internal-error", err)
 	}
 
-	kv, err := s.nacl.EntityUM(c.Request().Context(), c.Param("id"), "READ", "", "")
+	kv, err := s.nacl.EntityUM(c.Request().Context(), c.Param("id"), "READ", "*", "")
 	if err != nil {
 		return c.Render(http.StatusInternalServerError, "internal-error", err)
 	}
