@@ -13,4 +13,6 @@ FROM scratch
 LABEL org.opencontainers.image.source https://github.com/netauth/webui
 EXPOSE 8080
 ENTRYPOINT ["/webui"]
+COPY --from=build /webui-src/tpl /
+COPY --from=build /webui-src/assets /
 COPY --from=build /webui /webui
