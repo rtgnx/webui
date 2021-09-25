@@ -1,5 +1,5 @@
 FROM golang:1.15-alpine as build
-WORKDIR /webui
+WORKDIR /webui-src
 COPY . .
 ARG TARGET=webui
 RUN go mod vendor && \
