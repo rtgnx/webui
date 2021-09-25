@@ -1,5 +1,5 @@
 FROM golang:1.15-alpine as build
-WORKDIR /webui
+WORKDIR /webui-src
 COPY . .
 ARG TARGET=webui
 RUN go mod vendor && \
@@ -7,7 +7,7 @@ RUN go mod vendor && \
         apk add upx binutils && \
         strip /webui && \
         upx /webui && \
-        ls -alh /n
+        ls -alh /webui
 
 FROM scratch
 LABEL org.opencontainers.image.source https://github.com/netauth/webui
